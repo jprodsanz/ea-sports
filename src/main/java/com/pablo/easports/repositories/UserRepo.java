@@ -1,6 +1,6 @@
-package com.pablo.atleticomadrid.repositories;
+package com.pablo.easports.repositories;
 
-import com.pablo.atleticomadrid.models.User;
+import com.pablo.easports.models.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,5 +13,8 @@ public interface UserRepo extends CrudRepository<User, Long> {
 
     @Override
     List<User> findAll();
-//    List<User> findByIdNot(Long id);
+    List<User> findByIdNot(Long id);
+
+    // make a func that returns all matches a user is not a part of
+
 }

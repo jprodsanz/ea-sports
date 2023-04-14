@@ -18,7 +18,7 @@
 <div class="container pt-4 mb-4">
     <div class="row">
         <div class="col-12 d-flex align-items-baseline justify-content-evenly">
-            <p class="h1">Welcome to Atleti Sports </p>
+            <p class="h1">Welcome to EA Sports </p>
 
             <nav class="d-flex justify-content-around pb-2">
                 <!-- Dashboard -->
@@ -32,14 +32,35 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1 class="text-center">Add a Pick-Up Game</h1>
-            <h2>Hello, <c:out value="${user.firstName} ${user.lastName}"></c:out></h2></p>
+            <h1 class="text-center">Create pick-up game</h1>
+            <h2>Hello, <c:out value="${user.firstName} ${user.lastName}"></c:out></h2>
+            <h3 class="text-danger"> <c:out value="${error}"/></h3>
             <form:form action="/match/create" method="POST" modelAttribute="match">
-                    <!-- Location input -->
+                <!-- Name  input -->
+                <div class="mb-3">
+                    <form:label for="name" class="form-label" path="name">Name</form:label>
+                    <form:input style="width:250px;" type="text" class="form-control" id="name" aria-describedby="name" path="name" />
+                    <form:errors path="name" class="text-danger"/>
+                </div>
+                    <!-- Select A Player -->
+                    <div class="mb-3">
+                        <form:label for="players" class="form-label" path="players">Players</form:label>
+                        <form:errors path="players" class="text-danger"/>
+                        <form:select style="width:250px;" type="text" class="form-select" id="players" aria-describedby="players" path="players">
+                            <!-- List of type users from a find all method -->
+                            <c:forEach var="user" items="${users}">
+                                <option value="${user.id}">
+                                    <c:out value="${user.firstName}"/>
+                                    <c:out value="${user.lastName}"/>
+                                </option>
+                            </c:forEach>
+                        </form:select>
+                    </div>
+                <!-- Location input -->
                     <div class="mb-3">
                         <form:label for="location" class="form-label" path="location">Location</form:label>
                         <form:errors path="location" class="text-danger"/>
-                        <form:select style="width:250px;" type="text" class="form-control" id="location" aria-describedby="location" path="location">
+                        <form:select style="width:250px;" type="text" class="form-select" id="location" aria-describedby="location" path="location">
                             <option selected="true" disabled="disabled"> Select location</option>
                             <option value="West Loop">West Loop</option>
                             <option value="South Loop">South Loop</option>
@@ -56,7 +77,7 @@
                 <!-- Description input -->
                     <div class="mb-3">
                         <form:label for="description" class="form-label" path="description">Description</form:label>
-                        <form:textarea style="width:250px;" type="description" class="form-control" id="description" aria-describedby="description" path="description" rows="4" cols="50" />
+                        <form:textarea style="width:250px;" type="text" class="form-control" id="description" aria-describedby="description" path="description" rows="4" cols="50" />
                         <form:errors path="description" class="text-danger"/>
                     </div>
                 <!-- Price input -->

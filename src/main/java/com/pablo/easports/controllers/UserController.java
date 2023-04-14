@@ -1,8 +1,8 @@
-package com.pablo.atleticomadrid.controllers;
+package com.pablo.easports.controllers;
 
-import com.pablo.atleticomadrid.models.LoginUser;
-import com.pablo.atleticomadrid.models.User;
-import com.pablo.atleticomadrid.services.UserService;
+import com.pablo.easports.models.LoginUser;
+import com.pablo.easports.models.User;
+import com.pablo.easports.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

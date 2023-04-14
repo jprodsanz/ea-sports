@@ -40,7 +40,26 @@
 
                 <form:input type="hidden" path="submittedBy" value="${updateMatch.submittedBy.id}" class="form"/>
                 <form:input type="hidden" path="id" value="${updateMatch.id}" class="form"/>
-
+                <!-- Name  input -->
+                <div class="mb-3">
+                    <form:label for="name" class="form-label" path="name">Name</form:label>
+                    <form:input style="width:250px;" type="text" class="form-control" id="name" aria-describedby="name" path="name" />
+                    <form:errors path="name" class="text-danger"/>
+                </div>
+                <!-- Select A Player -->
+                <div class="mb-3">
+                    <form:label for="players" class="form-label" path="players">Players</form:label>
+                    <form:errors path="players" class="text-danger"/>
+                    <form:select style="width:250px;" type="text" class="form-select" id="players" aria-describedby="players" path="players">
+                        <!-- List of type users from a find all method -->
+                        <c:forEach var="user" items="${users}">
+                            <option value="${user.id}">
+                                <c:out value="${user.firstName}"/>
+                                <c:out value="${user.lastName}"/>
+                            </option>
+                        </c:forEach>
+                    </form:select>
+                </div>
                     <!-- Location input -->
                     <div class="mb-3">
                         <form:label for="location" class="form-label" path="location">Location</form:label>

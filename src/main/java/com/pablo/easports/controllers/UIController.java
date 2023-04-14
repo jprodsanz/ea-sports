@@ -1,10 +1,9 @@
-package com.pablo.atleticomadrid.controllers;
+package com.pablo.easports.controllers;
 
-import com.pablo.atleticomadrid.models.LoginUser;
-import com.pablo.atleticomadrid.models.Match;
-import com.pablo.atleticomadrid.models.User;
-import com.pablo.atleticomadrid.services.MatchService;
-import com.pablo.atleticomadrid.services.UserService;
+import com.pablo.easports.models.LoginUser;
+import com.pablo.easports.models.User;
+import com.pablo.easports.services.MatchService;
+import com.pablo.easports.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 
 @Controller
@@ -30,10 +28,14 @@ public class UIController {
             redirect.addFlashAttribute("error", "You must login to access content");
             return "redirect:/user/login";
         }
+//        User u = userService.getOne((Long) session.getAttribute("userId"));
+//        model.addAttribute("user", u);
+
+//        model.addAttribute("allUsers", userService.getAll());
         User u = userService.getOne((Long) session.getAttribute("userId"));
         model.addAttribute("user", u);
-        model.addAttribute("allUsers", userService.getAll());
-        model.addAttribute("allMatches", matchService.getAll());
+        model.addAttribute("otherMatches", matchService.getAllWithoutUser(u));
+//        model.addAttribute("allMatches", matchService.getAll());
         return "index.jsp";
     }
     // Register render route

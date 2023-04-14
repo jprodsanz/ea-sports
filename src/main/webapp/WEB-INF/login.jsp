@@ -18,7 +18,7 @@
 <div class="container pt-4 mb-4">
     <div class="row">
         <div class="col-12 d-flex align-items-baseline justify-content-evenly">
-            <p class="h1">Welcome to Atleti Sports </p>
+            <p class="h1">Welcome to EA Sports </p>
         </div>
     </div>
 </div>

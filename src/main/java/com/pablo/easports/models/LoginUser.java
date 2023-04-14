@@ -1,4 +1,4 @@
-package com.pablo.atleticomadrid.models;
+package com.pablo.easports.models;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;

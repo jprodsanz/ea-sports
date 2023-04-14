@@ -1,4 +1,4 @@
-package com.pablo.atleticomadrid.models;
+package com.pablo.easports.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -16,11 +16,13 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Match name is required")
+    @Size(min = 3, max = 18, message = "Match name must be between 3 and 18 characters")
+    private String name;
+
     @NotBlank(message = "Location is required")
     private String location;
 
-//    @DateTimeFormat(pattern = "yyyy-MM-dd h:mm a")
-//    @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime date;
 
@@ -43,7 +45,7 @@ public class Match {
     )
 
     // The above REL stores a list of users, referred to it as players
-    // The idea being users can join and rsvp a specific match
+    // The idea being players can join and join a match
             List<User> players;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -64,12 +66,14 @@ public class Match {
 
     // method overloading but wait... What does this do again ?
     public Match(
+            String name,
             String location,
             LocalDateTime date,
             String description,
             Double price
 
     ) {
+        this.name = name;
         this.location = location;
         this.date = date;
         this.description = description;
@@ -83,6 +87,14 @@ public class Match {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLocation() {

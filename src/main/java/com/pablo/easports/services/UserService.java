@@ -1,8 +1,8 @@
-package com.pablo.atleticomadrid.services;
+package com.pablo.easports.services;
 
-import com.pablo.atleticomadrid.models.LoginUser;
-import com.pablo.atleticomadrid.models.User;
-import com.pablo.atleticomadrid.repositories.UserRepo;
+import com.pablo.easports.models.LoginUser;
+import com.pablo.easports.models.User;
+import com.pablo.easports.repositories.UserRepo;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,9 +82,9 @@ public class UserService {
         return repo.findAll();
     }
 
-//    public List<User> getAllExcept(Long id){
-//        return repo.findByIdNot(id);
-//    }
+    public List<User> getAllExcept(Long id){
+        return repo.findByIdNot(id);
+    }
 
     public boolean deleteOne(Long id) {
         Optional<User> i = repo.findById(id);

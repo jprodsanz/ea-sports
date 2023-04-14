@@ -17,7 +17,7 @@
 <div class="container pt-4 mb-4">
   <div class="row">
     <div class="col-12 d-flex align-items-baseline justify-content-evenly">
-      <p class="h1">Welcome to Atleti Sports </p>
+      <p class="h1">Welcome to EA Sports </p>
 
       <nav class="d-flex justify-content-around pb-2">
 
@@ -38,16 +38,16 @@
       <h3 class="text-danger"> <c:out value="${error}"/></h3>
 
       <%--  if match = true --%>
-      <c:if test="${user.id == oneMatch.submittedBy.id}">
+      <c:if test="${user.id == one}">
         <td>
-          <h3> Hey, ${oneMatch.submittedBy.firstName} ${oneMatch.submittedBy.lastName} </h3>
+          <h3> Hey, ${user.firstName} ${user.lastName} </h3>
         </td>
       </c:if>
 
       <!-- NOT a match -->
       <c:if test="${user.id != oneMatch.submittedBy.id}">
         <td>
-          <h3> ${oneMatch.submittedBy.firstName} ${oneMatch.submittedBy.lastName} is playing at ${oneMatch.location}</h3>
+          <h3> ${user.firstName} ${user.lastName} is playing at ${oneMatch.location}</h3>
           <h4> Here's ${oneMatch.submittedBy.lastName} info: </h4>
         </td>
       </c:if>
@@ -55,10 +55,10 @@
       <div class="container">
         <p>
           Host:
-          ${oneMatch.submittedBy.firstName}
-          ${oneMatch.submittedBy.lastName}
+          ${user.firstName}
+          ${user.lastName}
         </p>
-        <p>Email: ${oneMatch.submittedBy.email}</p>
+        <p>Email: ${user.email}</p>
         <p>Date: ${oneMatch.date}</p>
         <p>Description: ${oneMatch.description}</p>
         <p>Price: ${oneMatch.price}</p>

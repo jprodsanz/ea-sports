@@ -1,4 +1,4 @@
-package com.pablo.atleticomadrid.models;
+package com.pablo.easports.models;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;

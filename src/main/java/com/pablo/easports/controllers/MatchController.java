@@ -1,9 +1,9 @@
-package com.pablo.atleticomadrid.controllers;
+package com.pablo.easports.controllers;
 
-import com.pablo.atleticomadrid.models.Match;
-import com.pablo.atleticomadrid.models.User;
-import com.pablo.atleticomadrid.services.MatchService;
-import com.pablo.atleticomadrid.services.UserService;
+import com.pablo.easports.models.Match;
+import com.pablo.easports.models.User;
+import com.pablo.easports.services.MatchService;
+import com.pablo.easports.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +27,10 @@ public class MatchController {
             redirect.addFlashAttribute("error", "You must login to access content");
             return "redirect:/user/login";
         }
-        model.addAttribute("users", userService.getAll());
+//        model.addAttribute("users", userService.getAll());
+    // get all but logged-in
+        model.addAttribute("users", userService.getAllExcept((Long)session.getAttribute("userId")));
+        // new Match represents a new instance of "match"
         model.addAttribute("match", new Match());
         return "match-create.jsp";
     }
@@ -46,6 +49,7 @@ public class MatchController {
         // load the match onto the page
         User loggedUser = userService.getOne(id);
         model.addAttribute("user", loggedUser);
+
         Match oneMatch = service.getOne(match_id);
         model.addAttribute("oneMatch", oneMatch);
         // return the page
@@ -59,14 +63,18 @@ public class MatchController {
         if (session.getAttribute("userId") == null) {
             return "redirect:/user/login";
         }
+        // automatically add the logged-in user to the match
+
         // Link the matches on the dashboard to their own pages
         // display a list of the user's matches and a list of the match the user is not a part of
         if (result.hasErrors()) {
             model.addAttribute("users", userService.getAll());
             return "match-create.jsp";
         }
-//        match.getPlayers().add(userService.getOne((Long) session.getAttribute("userId")));
-        match.setSubmittedBy(userService.getOne((Long) session.getAttribute("userId")));
+        // allows us to associate the logged in user to the match being crated
+        match.getPlayers().add(userService.getOne((Long) session.getAttribute("userId")));
+
+//        match.setSubmittedBy(userService.getOne((Long) session.getAttribute("userId")));
         service.createOrUpdate(match);
         return "redirect:/";
     }
